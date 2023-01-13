@@ -1,1 +1,3 @@
-//Mettre le code JavaScript lié à la page photographer.html
+import OnePhotographer from '../factories/onePhotograph.js';
+
+const photographer = new OnePhotographer();

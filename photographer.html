@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
+    <script src="scripts/utils/font-awesome.js"></script>
     <title>Fisheye - photographe </title>
   </head>
   <body>
@@ -13,8 +14,21 @@
     </header>
     <main id="main">
       <div class="photograph-header">
-        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+        <div class="containerInfo"></div>
+        <div class="containerButton">
+          <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+        </div>
+        <div class="containerImg"></div>
       </div>
+  <div class="containerFilter">
+        <label for="filtre">Filtrer par :</label>
+        <select name="filter" id="filtre">
+          <option id="titre" value="title">Titre</option>
+          <option id="date" value="date">Date</option>
+          <option id="popular" value="likes">Popularité</option> 
+        </select>
+      </div>
+      <div class="containerMedias"></div>
     </main>
     <div id="contact_modal">
 			<div class="modal">
@@ -31,7 +45,7 @@
 				</form>
 			</div>
 		</div>
-    <script src="/scripts/pages/photographer.js"></script>
+    <script type="module" src="scripts/pages/photographer.js"></script>
     <script src="/scripts/utils/contactForm.js"></script>
   </body>
 </html>
