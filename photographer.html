@@ -20,7 +20,7 @@
         </div>
         <div class="containerImg"></div>
       </div>
-  <div class="containerFilter">
+      <div class="containerFilter">
         <label for="filtre">Filtrer par :</label>
         <select name="filter" id="filtre">
           <option id="titre" value="title">Titre</option>
@@ -30,22 +30,74 @@
       </div>
       <div class="containerMedias"></div>
     </main>
-    <div id="contact_modal">
-			<div class="modal">
-				<header>
-          <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
+    <div 
+      id="contact_modal" 
+      role="dialog" 
+      aria-modal="true" 
+      aria-labelledby="modal-title">
+      <div class="modal">
+        <header>
+          <h2 id="modal-title">Contactez-moi</h2>
+          <img 
+            src="assets/icons/close.svg" 
+            tabindex="1" 
+            onclick="closeModal()" alt="close contact" 
+            aria-label="Fermer la modale"
+          />
         </header>
-				<form>
-					<div>
-						<label>Prénom</label>
-						<input />
-					</div>
-          <button class="contact_button">Envoyer</button>
-				</form>
-			</div>
-		</div>
-    <script type="module" src="scripts/pages/photographer.js"></script>
-    <script src="/scripts/utils/contactForm.js"></script>
+        <form id="contactForm" action="" method="post">
+          <div>
+            <div class="formGroup">
+              <label for="firstname">Prénom</label>
+              <span class="error" id="errorFirst"></span>
+              <input 
+                tabindex="2" 
+                type="text" 
+                name="firstname" 
+                id="firstname" 
+              >
+            </div>
+            <div class="formGroup">
+              <label for="lastname">Nom</label>
+              <span class="error" id="errorLast"></span>
+              <input 
+                tabindex="3" 
+                type="text" 
+                name="lastname" 
+                id="lastname" 
+              >
+            </div>
+            <div class="formGroup">
+              <label for="email">Email</label>
+              <span class="error" id="errorEmail"></span>
+              <input 
+                tabindex="4" 
+                type="email" 
+                name="email" 
+                id="email" 
+                >
+            </div>
+            <div class="formGroup">
+              <label for="message">Message</label>
+              <span class="error" id="errorMessage"></span>
+              <textarea required 
+                tabindex="5" 
+                name="message" 
+                id="message" 
+                cols="30" 
+                rows="10" 
+              >
+            </textarea>
+            </div>
+          </div>
+          <button 
+            class="contact_button" 
+            tabindex="6" 
+            type="submit">Envoyer</button>
+        </form>
+      </div>
+    </div>
+    <script type="module" src="./scripts/pages/photographer.js"></script>
+    <script src="./scripts/utils/contactForm.js"></script>
   </body>
 </html>
