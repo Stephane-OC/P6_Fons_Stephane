@@ -1,6 +1,4 @@
-/*  showMethods module that make functions displayed data of a specific photographer   **
- **  Functions use the DOM API to create and append elements                            **
- **  Instance parameter passed functions refers to OnePhotographer class                */
+import lightbox from "../factories/lightbox.js";
 
 export default {
   showData: function (instance) {
@@ -12,9 +10,7 @@ export default {
   },
 
   showHeader: function (instance) {
-    const infoHeader = document.querySelector(
-      ".photograph-header .containerInfo"
-    );
+    const infoHeader = document.querySelector(".photograph-header .containerInfo");
     const title = document.createElement("h1");
     title.textContent = instance.photographer.name;
     const loc = document.createElement("h3");
@@ -49,6 +45,17 @@ export default {
       mediaItem.dataset.index = index;
       mediaItem.setAttribute("tabindex", 0);
 
+      mediaItem.addEventListener("click", (e) => {
+        lightbox.showLightbox(e, instance);
+      });
+      mediaItem.addEventListener("focus", () => {
+        mediaItem.addEventListener("keydown", (e) => {
+          if (e.code == "Enter") {
+            lightbox.showLightbox(e, instance);
+          }
+        });
+      });
+
       mediaItem.setAttribute("src", mediaUrl);
       mediaItem.setAttribute("alt", media.title);
       containerImg.appendChild(mediaItem);
@@ -58,6 +65,11 @@ export default {
       mediaItem.dataset.index = index;
       mediaItem.controls = true;
       mediaItem.classList.add("media");
+
+      mediaItem.addEventListener("click", (e) => {
+        lightbox.showLightbox(e, instance);
+      });
+
       mediaItem.setAttribute("src", mediaUrl);
       mediaItem.setAttribute("alt", media.title);
       mediaItem.setAttribute("data-index", index);
@@ -70,7 +82,6 @@ export default {
     const picTitle = document.createElement("h3");
     picTitle.textContent = media.title;
 
-    
     const like = document.createElement("span");
 
     like.setAttribute("tabindex", 0);
@@ -96,14 +107,12 @@ export default {
           like.classList.toggle("active");
           if (like.classList.contains("active")) {
             media.likes += 1;
-            this.likes += 1;
+            instance.likes += 1;
             like.innerHTML = `${media.likes} <i class="fa-solid fa-heart"></i>`;
           } else {
             media.likes -= 1;
-            this.likes -= 1;
-            like.innerHTML = `
-              ${media.likes} 
-              <i class="fa-regular fa-heart"></i>`;
+            instance.likes -= 1;
+            like.innerHTML = `${media.likes} <i class="fa-regular fa-heart"></i>`;
           }
           instance.showLikes();
         }
@@ -136,4 +145,5 @@ export default {
 
     document.querySelector(".photograph-header").appendChild(priceContainer);
   },
+ 
 };

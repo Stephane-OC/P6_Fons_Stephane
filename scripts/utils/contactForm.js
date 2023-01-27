@@ -18,6 +18,7 @@ function displayModal() {
   closeButton.addEventListener("keydown", (event) => {
     if (event.key === "Enter") {
       closeModal();
+      document.getElementById("contactForm").reset();
     }
   });
   // Display modal
@@ -45,6 +46,7 @@ function displayModal() {
       event.preventDefault();
       // focus on close button
       closeButton.focus();
+      
     }
   });
 }

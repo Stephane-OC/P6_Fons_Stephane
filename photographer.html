@@ -28,6 +28,7 @@
           <option id="popular" value="likes">Popularité</option> 
         </select>
       </div>
+    </div>
       <div class="containerMedias"></div>
     </main>
     <div 
@@ -50,21 +51,23 @@
             <div class="formGroup">
               <label for="firstname">Prénom</label>
               <span class="error" id="errorFirst"></span>
-              <input 
+              <input
                 tabindex="2" 
                 type="text" 
                 name="firstname" 
                 id="firstname" 
+                aria-required="true"
               >
             </div>
             <div class="formGroup">
               <label for="lastname">Nom</label>
               <span class="error" id="errorLast"></span>
-              <input 
+              <input
                 tabindex="3" 
                 type="text" 
                 name="lastname" 
                 id="lastname" 
+                aria-required="true"
               >
             </div>
             <div class="formGroup">
@@ -75,17 +78,19 @@
                 type="email" 
                 name="email" 
                 id="email" 
+                aria-required="true"
                 >
             </div>
             <div class="formGroup">
               <label for="message">Message</label>
               <span class="error" id="errorMessage"></span>
-              <textarea required 
+              <textarea   
                 tabindex="5" 
                 name="message" 
                 id="message" 
                 cols="30" 
                 rows="10" 
+                aria-required="true"
               >
             </textarea>
             </div>
@@ -97,7 +102,17 @@
         </form>
       </div>
     </div>
-    <script type="module" src="./scripts/pages/photographer.js"></script>
+    <div class="lightbox">
+      <img id="boxImg" src="" alt="">
+      <video id="boxVid" src="" autoplay loop></video>
+      <h3 id="lightboxTitle" class="title"></h3>
+      <div class="nav">
+        <span id="prevBox" class="prev"><strong class="fa-solid fa-angle-left"></strong></span>
+        <span id="nextBox" class="next"><strong class="fa-solid fa-angle-right"></strong></span>
+      </div>
+      <span id="closeLightbox" class="close"><strong class="fa-regular fa-xmark"></strong></span>
+    </div>
+    <script type="module" src="scripts/pages/photographer.js"></script>
     <script src="./scripts/utils/contactForm.js"></script>
   </body>
 </html>
