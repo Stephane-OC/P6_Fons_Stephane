@@ -1,5 +1,5 @@
 export default {
-  checkForm(instance) {
+  checkForm() {
     const firstname = document.getElementById("firstname");
     const lastname = document.getElementById("lastname");
     const email = document.getElementById("email");
@@ -41,9 +41,9 @@ export default {
 
     if (error === 0) {
       console.log(
-        "Prénom : " + firstname.value,
-        "Nom : " + lastname.value,
-        "Email : " + email.value,
+        "Prénom : " + firstname.value + "\n" +
+        "Nom : " + lastname.value + "\n" +
+        "Email : " + email.value + "\n" +
         "Message : " + message.value
       );
     }

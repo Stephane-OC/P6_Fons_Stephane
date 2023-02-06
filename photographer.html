@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
   <head>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
     <script src="scripts/utils/font-awesome.js"></script>
@@ -10,7 +11,7 @@
   </head>
   <body>
     <header>
-      <a href="/index.html"><img src="assets/images/logo.png" class="logo" /></a>
+      <a href="/index.html"><img src="assets/images/logo.png" class="logo"alt="Logo Fisheye" /></a>
     </header>
     <main id="main">
       <div class="photograph-header">
@@ -23,9 +24,9 @@
       <div class="containerFilter">
         <label for="filtre">Filtrer par :</label>
         <select name="filter" id="filtre">
-          <option id="titre" value="title">Titre</option>
+          <option id="popular" value="likes">Popularité</option>
           <option id="date" value="date">Date</option>
-          <option id="popular" value="likes">Popularité</option> 
+          <option id="titre" value="title">Titre</option>
         </select>
       </div>
     </div>
@@ -113,6 +114,7 @@
       <span id="closeLightbox" class="close"><strong class="fa-regular fa-xmark"></strong></span>
     </div>
     <script type="module" src="scripts/pages/photographer.js"></script>
+    
     <script src="./scripts/utils/contactForm.js"></script>
   </body>
 </html>

@@ -21,6 +21,7 @@ function displayModal() {
       document.getElementById("contactForm").reset();
     }
   });
+  
   // Display modal
   modal.style.display = "block";
   // Select all focusable elements within modal (excluding tabindex -1)
@@ -48,6 +49,13 @@ function displayModal() {
       closeButton.focus();
       
     }
+  });
+
+  modal.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      closeModal();
+      document.getElementById("contactForm").reset();
+    }   
   });
 }
 
