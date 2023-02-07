@@ -56,7 +56,7 @@ class OnePhotographer {
     lightbox.classList.add("active");
   }
 
-  // Set the source of lightbox (image or video)
+  // Set source of lightbox (image or video)
   buildLightbox() {
     const boxImg = document.getElementById("boxImg");
     const boxVid = document.getElementById("boxVid");
@@ -139,6 +139,13 @@ function idUrlCatch() {
   }
 }
 
+  /* Function fetch one photographer with his id                           **
+  ** Fetches data from file './data/photographers.json'                    **
+  ** Parses data and loops through photographers array                     **
+  ** If id of photographer matches id passed in url,                       **
+  ** Photographer's details and medias are stored in respective variables  **
+  ** Medias are sorted based on title and showData function is called      */
+
 const getPhotographer = async function getPhotographer() {
   const response = await fetch("./data/photographers.json");
   const res = await response.json();
@@ -169,6 +176,12 @@ photographer.showData = function () {
   this.showLikes();
 };
 
+  /* Select element to display header informations                                         **
+  ** Use and set text content for elements to display (name, location and tagline...)      **
+  ** Append name, location and tagline to selected elements                                **
+  ** Select element to display Photographer's image                                        ** 
+  ** Create image element and set source and alt attribute. Append image selected element  */
+
 photographer.showHeader = function () {
   const infoHeader = document.querySelector(".photograph-header .containerInfo");
   const title = document.createElement("h1");
@@ -189,20 +202,26 @@ photographer.showHeader = function () {
   headerImg.appendChild(img);
 };
 
+
+
 photographer.showMedia = function (media, index) {
+  // Select media container and create a new card
   const mediaSection = document.querySelector(".containerMedias");
   const card = document.createElement("div");
   card.classList.add("cardMedia");
 
+  // Create a container for media item
   const containerImg = document.createElement("div");
   containerImg.classList.add("containerImg");
 
+  // Create media item
   const mediaItem = document.createElement(media.image ? "img" : "video");
   mediaItem.dataset.index = index;
   mediaItem.classList.add("media");
   mediaItem.setAttribute("tabindex", 0);
   mediaItem.setAttribute("alt", media.title);
 
+  // Add attributes & event listeners for images or videos
   if (media.image) {
     mediaItem.setAttribute("src", `assets/medias/${media.image}`);
     mediaItem.addEventListener("click", (e) => {
@@ -222,17 +241,20 @@ photographer.showMedia = function (media, index) {
       photographer.lightbox.showLightbox(e);
     });
   }
-
+  // Append media item to container
   containerImg.appendChild(mediaItem);
 
+  // Create a subcontainer for title and like button
   const subContain = document.createElement("div");
   subContain.classList.add("subContain");
 
+  // Create title element
   const picTitle = document.createElement("h3");
   picTitle.textContent = media.title;
 
   const like = document.createElement("span");
 
+  // Create like button handler, to add or remove a like
   like.setAttribute("tabindex", 0);
   like.classList.add("like");
   like.innerHTML = `${media.likes} <i class="fa-regular fa-heart"></i>`;
@@ -247,6 +269,7 @@ photographer.showMedia = function (media, index) {
       this.likes -= 1;
       like.innerHTML = `${media.likes} <i class="fa-regular fa-heart"></i>`;
     }
+    //calling "showLikes" function, to update and create "price & like container"
     this.showLikes();
   });
 
@@ -277,6 +300,12 @@ photographer.showMedia = function (media, index) {
   mediaSection.appendChild(card);
 };
 
+
+  /* Show photographer's likes and price                                  **
+  ** Create div element for price and add class 'priceContainer'          **
+  ** Create span element for likes and add class 'likes'                  **
+  ** Create span element for price per day and add class 'priceDay'       **
+  ** Append both spans to created div and add div to header of photograph */
 photographer.showLikes = function () {
   const priceContainer = document.createElement("div");
   priceContainer.classList.add("priceContainer");
