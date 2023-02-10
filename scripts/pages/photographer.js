@@ -104,6 +104,10 @@ class OnePhotographer {
     this.buildLightbox();
   }
 
+  /*  "sortOrder" higher-order function that returns comparison function used to sort an array.   **
+  **  comparison function takes two values and returns -1 if first value is smaller,              **
+  **  1 if first value is larger, and 0 if they are equal, based on given sort parameter          **
+  **  (such as "popular"). "sortOrder" function is used in "sortBy" method to sort "medias" array.*/
   sortOrder = function (settings) {
     return function (x, y) {
       if (x[settings] < y[settings]) {
@@ -144,7 +148,7 @@ function idUrlCatch() {
   ** Parses data and loops through photographers array                     **
   ** If id of photographer matches id passed in url,                       **
   ** Photographer's details and medias are stored in respective variables  **
-  ** Medias are sorted based on title and showData function is called      */
+  ** Medias are sorted based on popularity and showData function is called */
 
 const getPhotographer = async function getPhotographer() {
   const response = await fetch("./data/photographers.json");
@@ -160,7 +164,6 @@ const getPhotographer = async function getPhotographer() {
         }
       });
       photographer.medias = photographer.medias.sort(photographer.sortOrder("popular"));
-     
     }
   });
   photographer.showData();
@@ -187,11 +190,14 @@ photographer.showHeader = function () {
   const title = document.createElement("h1");
   title.textContent = this.photographer.name;
   const loc = document.createElement("h3");
+  loc.classList.add("top");
   loc.textContent = `${this.photographer.city}, ${this.photographer.country}`;
   const tagline = document.createElement("span");
   tagline.textContent = this.photographer.tagline;
+  
   infoHeader.appendChild(title);
   infoHeader.appendChild(loc);
+  infoHeader.appendChild(tagline)
 
   const headerImg = document.querySelector(".photograph-header .containerImg");
   const pic = `assets/photographers/${this.photographer.portrait}`;
@@ -234,12 +240,14 @@ photographer.showMedia = function (media, index) {
         }
       });
     });
-  } else {
+  } else if (media.video){
     mediaItem.controls = true;
     mediaItem.setAttribute("src", `assets/medias/${media.video}`);
     mediaItem.addEventListener("click", (e) => {
       photographer.lightbox.showLightbox(e);
     });
+  } else {
+    console.log("Format non reconnue")
   }
   // Append media item to container
   containerImg.appendChild(mediaItem);
@@ -323,5 +331,3 @@ photographer.showLikes = function () {
 
   document.querySelector(".photograph-header").appendChild(priceContainer);
 };
-
-
